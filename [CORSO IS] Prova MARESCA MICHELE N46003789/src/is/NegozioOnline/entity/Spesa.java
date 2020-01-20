@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class Spesa {
 private String id;
 private LocalDate data;
-private float costoTotale;
+private double costoTotale;
 private StatoSpesa stato;
 private ArrayList<DettaglioSpesa> dettaglio=new ArrayList<DettaglioSpesa>();
 
-public Spesa(String id,LocalDate data,float costoTotale,StatoSpesa stato) {
+public Spesa(String id,LocalDate data,double costoTotale,StatoSpesa stato) {
 	this.setId(id);
 	this.setData(data);
 	this.setCostoTotale(costoTotale);
@@ -45,11 +45,11 @@ public void setData(LocalDate data) {
 	this.data = data;
 }
 
-public float getCostoTotale() {
+public double getCostoTotale() {
 	return costoTotale;
 }
 
-public void setCostoTotale(float costoTotale) {
+public void setCostoTotale(double costoTotale) {
 	this.costoTotale = costoTotale;
 }
 

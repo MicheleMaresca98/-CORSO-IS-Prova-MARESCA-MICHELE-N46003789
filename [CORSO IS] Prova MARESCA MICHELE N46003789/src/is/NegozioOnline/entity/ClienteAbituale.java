@@ -21,17 +21,4 @@ public void addSconto(Sconto sconto) {
 	this.scontiDisponibili.add(sconto);
 }
 
-public int getNumeroSpeseEffettuate() {
-	return getSpeseEffettuate().size();
-}
-
-public float getTotaleSpeso() {
-	ArrayList<Spesa> listaSpese=getSpeseEffettuate();
-	float totale=0;
-	for (Spesa s:listaSpese) {
-		totale+=s.getCostoTotale();
-	}
-	return totale;
-}
-
 }

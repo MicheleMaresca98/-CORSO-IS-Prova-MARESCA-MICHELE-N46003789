@@ -53,4 +53,21 @@ public ArrayList<Spesa> getSpeseEffettuate() {
 public void setSpeseEffettuate(ArrayList<Spesa> speseEffettuate) {
 	this.speseEffettuate = speseEffettuate;
 }
+public String toString() {
+	return "NOME UTENTE="+this.nomeUtente;
+}
+
+public int getNumeroSpeseEffettuate() {
+	return getSpeseEffettuate().size();
+}
+
+public double getTotaleSpeso() {
+	ArrayList<Spesa> listaSpese=getSpeseEffettuate();
+	double totale=0;
+	for (Spesa s:listaSpese) {
+		totale+=s.getCostoTotale();
+	}
+	return totale;
+}
+
 }
