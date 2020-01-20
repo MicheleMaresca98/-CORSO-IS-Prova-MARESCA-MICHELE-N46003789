@@ -41,11 +41,11 @@ public void setListaSconti(ArrayList<Sconto> listaSconti) {
 }
 
 
-public ArrayList<ClienteAbituale> generaReport(){
-	ArrayList<ClienteAbituale> listaClientiAbituali=new ArrayList<ClienteAbituale>();
+public ArrayList<Cliente> generaReport(){
+	ArrayList<Cliente> listaClientiAbituali=new ArrayList<Cliente>();
 	for(Cliente c: listaClienti) {
 		if(c instanceof ClienteAbituale) {
-			listaClientiAbituali.add((ClienteAbituale) c);
+			listaClientiAbituali.add(c);
 			int numeroSpeseEffettuate=c.getNumeroSpeseEffettuate();
 			double totaleSpeso=c.getTotaleSpeso();
 					System.out.println("CLIENTE: "+c+" NUMERO SPESE EFFETTUATE="+numeroSpeseEffettuate+" IMPORTO COMPLESSIVO SPESO="+totaleSpeso);
@@ -55,16 +55,21 @@ public ArrayList<ClienteAbituale> generaReport(){
 }
 /* Quale scegliere */
 public ArrayList<Cliente> generaReport(int numero){
-	ArrayList<Cliente> listaClienti=new ArrayList<Cliente>();
+	
+	ArrayList<Cliente> listaClientiN=new ArrayList<Cliente>();
+	if(numero<0) {
+		System.out.println("Ingresso non valido\n");
+		return listaClientiN;
+	}
 	for(Cliente c: listaClienti) {
 		int numeroSpeseEffettuate=c.getNumeroSpeseEffettuate();
-		if(numeroSpeseEffettuate>numero) {
-			listaClienti.add(c);
+		if(numeroSpeseEffettuate>=numero) {
+			listaClientiN.add(c);
 			double totaleSpeso=c.getTotaleSpeso();
 					System.out.println("CLIENTE: "+c+" NUMERO SPESE EFFETTUATE="+numeroSpeseEffettuate+" IMPORTO COMPLESSIVO SPESO="+totaleSpeso);
 		}
 	}
-	return listaClienti;
+	return listaClientiN;
 }
 
 public void aggiungiProdotto(Prodotto prodotto) {

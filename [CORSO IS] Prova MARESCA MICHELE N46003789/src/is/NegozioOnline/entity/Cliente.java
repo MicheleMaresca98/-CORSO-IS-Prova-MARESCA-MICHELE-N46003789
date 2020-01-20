@@ -14,14 +14,22 @@ public Cliente() {
 	this.setNumeroTelefono("");
 	this.setCartaDiCredito("");
 }
+
 public Cliente(String nomeUtente,String password,String numeroTelefono, String cartaDiCredito) {
 	this.setNomeUtente(nomeUtente);
 	this.setPassword(password);
 	this.setNumeroTelefono(numeroTelefono);
 	this.setCartaDiCredito(cartaDiCredito);
 }
-public void creaSpesa(Spesa spesa) {
+public Cliente creaSpesa(Spesa spesa) {
 	this.getSpeseEffettuate().add(spesa);
+	if(speseEffettuate.size()==5) {
+		ClienteAbituale c=new ClienteAbituale(this.nomeUtente,this.password,this.numeroTelefono,this.cartaDiCredito,null);
+		c.setSpeseEffettuate(this.getSpeseEffettuate());
+		return c;
+	}
+	
+	return this;
 }
 public String getNomeUtente() {
 	return nomeUtente;
