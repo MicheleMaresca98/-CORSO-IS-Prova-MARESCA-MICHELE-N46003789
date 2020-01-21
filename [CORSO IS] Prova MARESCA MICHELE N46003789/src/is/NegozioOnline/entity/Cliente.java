@@ -98,16 +98,7 @@ public boolean equals(Object c) {
 			else {
 				return false;
 			}
-		}
-		else if (c instanceof ClienteAbituale ) {
-			ClienteAbituale r = (ClienteAbituale)c;
-			
-			if( this.nomeUtente.equals(r.getNomeUtente()) && this.password.equals(r.getPassword()) 
-					&& this.numeroTelefono.equals(r.getNumeroTelefono()) && this.cartaDiCredito.equals(r.getCartaDiCredito())) {
-			
-				return true;
-			}
-		}
+		}else
 		return false;	
 }
 
