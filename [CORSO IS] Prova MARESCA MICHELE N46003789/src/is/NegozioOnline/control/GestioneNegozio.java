@@ -14,7 +14,7 @@ public class GestioneNegozio {
 	private ArrayList<Sconto> listaSconti = new ArrayList<Sconto>();
 
 	public GestioneNegozio() {
-
+ 
 	}
 
 	public ArrayList<Prodotto> getListaProdotti() {
