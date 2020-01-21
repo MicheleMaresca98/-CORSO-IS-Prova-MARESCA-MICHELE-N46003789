@@ -83,8 +83,8 @@ public class GestioneNegozio {
 		this.listaProdotti.remove(prodotto);
 	}
 
-	public Cliente registrazione(String nomeUtente,String password,String numeroTelefono,String cartaDiCredito) {
-		Cliente cliente=new Cliente(nomeUtente,password,numeroTelefono,cartaDiCredito);
+	public Cliente registrazione(String nomeUtente, String password, String numeroTelefono, String cartaDiCredito) {
+		Cliente cliente = new Cliente(nomeUtente, password, numeroTelefono, cartaDiCredito);
 		listaClienti.add(cliente);
 		return cliente;
 	}
@@ -104,14 +104,14 @@ public class GestioneNegozio {
 	public void comunicaScontoCliente(ClienteAbituale cliente, Sconto sconto) {
 		cliente.addSconto(sconto);
 	}
-	
+
 	public void effettuaAcquisto(Spesa spesa, Cliente cliente) {
 		cliente.creaSpesa(spesa);
-		if(cliente.getNumeroSpeseEffettuate()==5) {
-			for(Cliente c:listaClienti) {
-				if(c==cliente) {
+		if (cliente.getNumeroSpeseEffettuate() == 5) {
+			for (Cliente c : listaClienti) {
+				if (c == cliente) {
 					listaClienti.remove(c);
-					 c = new ClienteAbituale(cliente.getNomeUtente(), cliente.getPassword(), cliente.getNumeroTelefono(),
+					c = new ClienteAbituale(cliente.getNomeUtente(), cliente.getPassword(), cliente.getNumeroTelefono(),
 							cliente.getCartaDiCredito(), null);
 					c.setSpeseEffettuate(cliente.getSpeseEffettuate());
 					listaClienti.add(c);
