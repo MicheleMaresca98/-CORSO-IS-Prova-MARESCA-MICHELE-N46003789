@@ -23,18 +23,10 @@ public class Cliente {
 		this.setCartaDiCredito(cartaDiCredito);
 	}
 
-	public Cliente creaSpesa(Spesa spesa) {
+	public void creaSpesa(Spesa spesa) {
 		this.getSpeseEffettuate().add(spesa);
-		if (speseEffettuate.size() == 5) {
-			ClienteAbituale c = new ClienteAbituale(this.nomeUtente, this.password, this.numeroTelefono,
-					this.cartaDiCredito, null);
-			c.setSpeseEffettuate(this.getSpeseEffettuate());
-			return c;
 		}
-
-		return this;
-	}
-
+	
 	public String getNomeUtente() {
 		return nomeUtente;
 	}

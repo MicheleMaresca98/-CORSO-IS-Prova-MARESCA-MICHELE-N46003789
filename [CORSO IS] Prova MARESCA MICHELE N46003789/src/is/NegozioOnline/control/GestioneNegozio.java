@@ -83,8 +83,10 @@ public class GestioneNegozio {
 		this.listaProdotti.remove(prodotto);
 	}
 
-	public void registrazione(Cliente cliente) {
+	public Cliente registrazione(String nomeUtente,String password,String numeroTelefono,String cartaDiCredito) {
+		Cliente cliente=new Cliente(nomeUtente,password,numeroTelefono,cartaDiCredito);
 		listaClienti.add(cliente);
+		return cliente;
 	}
 
 	public ArrayList<Prodotto> visualizzaProdotti() {
@@ -102,6 +104,21 @@ public class GestioneNegozio {
 	public void comunicaScontoCliente(ClienteAbituale cliente, Sconto sconto) {
 		cliente.addSconto(sconto);
 	}
+	
+	public void effettuaAcquisto(Spesa spesa, Cliente cliente) {
+		cliente.creaSpesa(spesa);
+		if(cliente.getNumeroSpeseEffettuate()==5) {
+			for(Cliente c:listaClienti) {
+				if(c==cliente) {
+					listaClienti.remove(c);
+					 c = new ClienteAbituale(cliente.getNomeUtente(), cliente.getPassword(), cliente.getNumeroTelefono(),
+							cliente.getCartaDiCredito(), null);
+					c.setSpeseEffettuate(cliente.getSpeseEffettuate());
+					listaClienti.add(c);
+				}
+			}
+		}
+	}
 
 	/* NON IMPLEMENTATE */
 
@@ -113,7 +130,7 @@ public class GestioneNegozio {
 
 	}
 
-	public void effettuaAcquisto(Spesa spesa, Cliente cliente) {
+	public void richiediSconto() {
 
 	}
 
