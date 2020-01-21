@@ -1,5 +1,6 @@
 package is.NegozioOnline.control;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import is.NegozioOnline.entity.Cliente;
@@ -7,6 +8,7 @@ import is.NegozioOnline.entity.ClienteAbituale;
 import is.NegozioOnline.entity.Prodotto;
 import is.NegozioOnline.entity.Sconto;
 import is.NegozioOnline.entity.Spesa;
+import is.NegozioOnline.entity.StatoSconto;
 
 public class GestioneNegozio {
 	private ArrayList<Prodotto> listaProdotti = new ArrayList<Prodotto>();
@@ -14,7 +16,7 @@ public class GestioneNegozio {
 	private ArrayList<Sconto> listaSconti = new ArrayList<Sconto>();
 
 	public GestioneNegozio() {
- 
+
 	}
 
 	public ArrayList<Prodotto> getListaProdotti() {
@@ -41,6 +43,7 @@ public class GestioneNegozio {
 		this.listaSconti = listaSconti;
 	}
 
+	// FUNZIONE SENZA PARAMETRO
 	public ArrayList<Cliente> generaReport() {
 		ArrayList<Cliente> listaClientiAbituali = new ArrayList<Cliente>();
 		for (Cliente c : listaClienti) {
@@ -55,7 +58,7 @@ public class GestioneNegozio {
 		return listaClientiAbituali;
 	}
 
-	/* Quale scegliere */
+	// FUNZIONE CON PARAMETRO
 	public ArrayList<Cliente> generaReport(int numero) {
 
 		ArrayList<Cliente> listaClientiN = new ArrayList<Cliente>();
@@ -75,8 +78,11 @@ public class GestioneNegozio {
 		return listaClientiN;
 	}
 
-	public void aggiungiProdotto(Prodotto prodotto) {
+	public Prodotto aggiungiProdotto(String codice, String nome, String descrizione, double prezzo,
+			int quantitaDisponibile) {
+		Prodotto prodotto = new Prodotto(codice, nome, descrizione, prezzo, quantitaDisponibile);
 		this.listaProdotti.add(prodotto);
+		return prodotto;
 	}
 
 	public void rimuoviProdotto(Prodotto prodotto) {
@@ -97,8 +103,10 @@ public class GestioneNegozio {
 		spesa.setId(id);
 	}
 
-	public void inserisciSconto(Sconto sconto) {
+	public Sconto inserisciSconto(String codice, String percentuale, LocalDate dataScadenza, StatoSconto stato) {
+		Sconto sconto = new Sconto(codice, percentuale, dataScadenza, stato);
 		this.listaSconti.add(sconto);
+		return sconto;
 	}
 
 	public void comunicaScontoCliente(ClienteAbituale cliente, Sconto sconto) {
