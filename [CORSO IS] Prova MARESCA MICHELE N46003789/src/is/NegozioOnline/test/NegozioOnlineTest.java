@@ -146,6 +146,15 @@ public class NegozioOnlineTest {
 		System.out.println("TEST 4:" + gestione.getListaClienti().size());
 		ArrayList<Cliente> listaClienti = gestione.generaReport();
 		assertTrue(listaClienti.size() == 4);
+		for(Cliente c: listaClienti) {
+			if(c.equals(co2)) {
+				assertTrue(c.getNumeroSpeseEffettuate()==6);
+				assertTrue(c.getTotaleSpeso()==57.50);
+			}else {
+				assertTrue(c.getNumeroSpeseEffettuate()==5);
+				assertTrue(c.getTotaleSpeso()==47.50);
+			}
+		}
 
 	}
 
@@ -178,7 +187,11 @@ public class NegozioOnlineTest {
 		System.out.println("TEST 5:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport();
 		assertTrue(listaClienti.size() == 1);
-
+		
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 5);
+			assertTrue(c.getTotaleSpeso() == 47.50);
+		}
 	}
 
 	@Test
@@ -218,7 +231,10 @@ public class NegozioOnlineTest {
 		System.out.println("TEST 6:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport();
 		assertTrue(listaClienti.size() == 2);
-
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 5);
+			assertTrue(c.getTotaleSpeso() == 47.50);
+		}
 	}
 
 	@Test

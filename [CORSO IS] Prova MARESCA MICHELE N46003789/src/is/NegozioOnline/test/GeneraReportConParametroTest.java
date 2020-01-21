@@ -51,12 +51,18 @@ public class GeneraReportConParametroTest {
 	@Test
 	public void test2() {
 		Cliente co1 = gestione.registrazione("NomeClienteO1", "PasswordClienteO1", "0818888080", "4023 6006 5533 7428");
-		Spesa spesa = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
-		gestione.effettuaAcquisto(spesa, co1);
+		Spesa spesa1 = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa1, co1);
+		Spesa spesa2 = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa2, co1);
 
 		System.out.println("TEST 2:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport(1);
 		assertTrue(listaClienti.size() == 1);
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 2);
+			assertTrue(c.getTotaleSpeso() == 20);
+		}
 	}
 
 	@Test
@@ -107,6 +113,10 @@ public class GeneraReportConParametroTest {
 		System.out.println("TEST 4:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport(3);
 		assertTrue(listaClienti.size() == 1);
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 5);
+			assertTrue(c.getTotaleSpeso() == 47.50);
+		}
 
 	}
 
@@ -145,6 +155,15 @@ public class GeneraReportConParametroTest {
 		System.out.println("TEST 5:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport(4);
 		assertTrue(listaClienti.size() == 2);
+		for(Cliente c: listaClienti) {
+			if(c.equals(co1)) {
+				assertTrue(c.getNumeroSpeseEffettuate()==5);
+				assertTrue(c.getTotaleSpeso()==47.50);
+			}else if(c.equals(co3)){
+				assertTrue(c.getNumeroSpeseEffettuate()==4);
+				assertTrue(c.getTotaleSpeso()==37.50);
+			}
+		}
 
 	}
 
@@ -174,10 +193,67 @@ public class GeneraReportConParametroTest {
 		System.out.println("TEST 8:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport(0);
 		assertTrue(listaClienti.size() == 1);
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 1);
+			assertTrue(c.getTotaleSpeso() == 10);
+		}
 	}
-
+	
 	@Test
 	public void test9() {
+		Cliente co1 = gestione.registrazione("NomeClienteO1", "PasswordClienteO1", "0818888080", "4023 6006 5533 7428");
+		Spesa spesa1 = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa1, co1);
+		Spesa spesa2 = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa2, co1);
+
+		System.out.println("TEST 9:");
+		ArrayList<Cliente> listaClienti = gestione.generaReport(2);
+		assertTrue(listaClienti.size() == 1);
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 2);
+			assertTrue(c.getTotaleSpeso() == 20);
+		}
+	}
+	
+	@Test
+	public void test10() {
+		Cliente co1 = gestione.registrazione("NomeClienteA1", "PasswordClienteA1", "0818888080", "4023 6006 5533 7428");
+		Spesa spesa1 = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa1, co1);
+		Spesa spesa2 = new Spesa("IDSPESA2", LocalDate.of(2019, Month.APRIL, 23), 12, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa2, co1);
+		Spesa spesa3 = new Spesa("IDSPESA3", LocalDate.of(2019, Month.APRIL, 23), 5.50, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa3, co1);
+		Spesa spesa4 = new Spesa("IDSPESA4", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa4, co1);
+		Spesa spesa5 = new Spesa("IDSPESA5", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa5, co1);
+
+		Cliente co2 = gestione.registrazione("NomeClienteO2", "PasswordClienteO2", "0818888080", "4023 6006 5533 7428");
+		Spesa spesa6 = new Spesa("IDSPESA6", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa6, co2);
+
+		Cliente co3 = gestione.registrazione("NomeClienteO3", "PasswordClienteO3", "0818888080", "4023 6006 5533 7428");
+		Spesa spesa11 = new Spesa("IDSPESA11", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa11, co3);
+
+		Cliente co4 = gestione.registrazione("NomeClienteO4", "PasswordClienteO4", "0818888080", "4023 6006 5533 7428");
+		Spesa spesa16 = new Spesa("IDSPESA16", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
+		gestione.effettuaAcquisto(spesa16, co4);
+
+		System.out.println("TEST 10:");
+		ArrayList<Cliente> listaClienti = gestione.generaReport(5);
+		assertTrue(listaClienti.size() == 1);
+		for (Cliente c : listaClienti) {
+			assertTrue(c.getNumeroSpeseEffettuate() == 5);
+			assertTrue(c.getTotaleSpeso() == 47.50);
+		}
+
+	}
+	
+	@Test
+	public void test11() {
 		Cliente co1 = gestione.registrazione("NomeClienteA1", "PasswordClienteA1", "0818888080", "4023 6006 5533 7428");
 		Spesa spesa1 = new Spesa("IDSPESA1", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
 		gestione.effettuaAcquisto(spesa1, co1);
@@ -208,10 +284,18 @@ public class GeneraReportConParametroTest {
 		Spesa spesa16 = new Spesa("IDSPESA16", LocalDate.of(2019, Month.APRIL, 23), 10, StatoSpesa.CONSEGNATA);
 		gestione.effettuaAcquisto(spesa16, co4);
 
-		System.out.println("TEST 9:");
+		System.out.println("TEST 11:");
 		ArrayList<Cliente> listaClienti = gestione.generaReport(3);
 		assertTrue(listaClienti.size() == 2);
+		for(Cliente c: listaClienti) {
+			if(c.equals(co1)) {
+				assertTrue(c.getNumeroSpeseEffettuate()==5);
+				assertTrue(c.getTotaleSpeso()==47.50);
+			}else if(c.equals(co3)){
+				assertTrue(c.getNumeroSpeseEffettuate()==4);
+				assertTrue(c.getTotaleSpeso()==37.50);
+			}
+		}
 
-	}
-
+}
 }

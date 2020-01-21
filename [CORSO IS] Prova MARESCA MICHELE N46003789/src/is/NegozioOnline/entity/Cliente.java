@@ -83,5 +83,32 @@ public class Cliente {
 		}
 		return totale;
 	}
+	
+public boolean equals(Object c) {
+		
+		if( c instanceof Cliente  ) {
+
+			Cliente r = (Cliente)c;
+		
+			if( this.nomeUtente.equals(r.nomeUtente) && this.password.equals(r.password) 
+					&& this.numeroTelefono.equals(r.numeroTelefono) && this.cartaDiCredito.equals(r.cartaDiCredito)) {
+			
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (c instanceof ClienteAbituale ) {
+			ClienteAbituale r = (ClienteAbituale)c;
+			
+			if( this.nomeUtente.equals(r.getNomeUtente()) && this.password.equals(r.getPassword()) 
+					&& this.numeroTelefono.equals(r.getNumeroTelefono()) && this.cartaDiCredito.equals(r.getCartaDiCredito())) {
+			
+				return true;
+			}
+		}
+		return false;	
+}
 
 }
