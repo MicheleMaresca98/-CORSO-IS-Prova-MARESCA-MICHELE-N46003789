@@ -9,12 +9,13 @@ import is.NegozioOnline.entity.Prodotto;
 import is.NegozioOnline.entity.Sconto;
 import is.NegozioOnline.entity.Spesa;
 import is.NegozioOnline.entity.StatoSconto;
+import is.NegozioOnline.entity.StatoSpesa;
 
 public class GestioneNegozio {
 	private ArrayList<Prodotto> listaProdotti = new ArrayList<Prodotto>();
 	private ArrayList<Cliente> listaClienti = new ArrayList<Cliente>();
 	private ArrayList<Sconto> listaSconti = new ArrayList<Sconto>();
-
+	private ArrayList<Spesa> listaSpese = new ArrayList<Spesa>();
 	public GestioneNegozio() {
 
 	}
@@ -99,8 +100,12 @@ public class GestioneNegozio {
 		return getListaProdotti();
 	}
 
-	public void registraIDspesa(Spesa spesa, String id) {
-		spesa.setId(id);
+	public void registraAvvenutaConsegna(String id) {
+		for(Spesa s:listaSpese) {
+			if(s.getId().equals(id)) {
+				s.setStato(StatoSpesa.CONSEGNATA);
+			}
+		}
 	}
 
 	public Sconto inserisciSconto(String codice, String percentuale, LocalDate dataScadenza, StatoSconto stato) {
@@ -160,6 +165,14 @@ public class GestioneNegozio {
 
 	public void modificaProdotto(Prodotto prodotto) {
 
+	}
+
+	public ArrayList<Spesa> getListaSpese() {
+		return listaSpese;
+	}
+
+	public void setListaSpese(ArrayList<Spesa> listaSpese) {
+		this.listaSpese = listaSpese;
 	}
 
 }
